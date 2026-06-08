@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MapleStory v95 Reconstruction Progress</title>
+<style>
+body { font-family: Arial, sans-serif; line-height: 1.6; padding: 1em; }
+.badge { display: inline-block; padding: 0.2em 0.5em; border-radius: 0.25em; color: #fff; margin-right: 0.2em; font-size: 0.85em; }
+.badge.green { background: #28a745; }
+.badge.orange { background: #fd7e14; }
+.badge.gray { background: #6c757d; }
+table { border-collapse: collapse; width: 100%; margin-bottom: 1em; }
+table, th, td { border: 1px solid #ddd; }
+th, td { padding: 0.5em; text-align: left; }
+.language-toggle { margin-bottom: 1em; }
+.language-toggle button { margin-right: 0.5em; padding: 0.3em 0.5em; }
+</style>
+</head>
+<body>
+<h1>MapleStory v95 Reconstruction Progress</h1>
+<div class="language-toggle">
+<button onclick="showLang('zh')">中文</button>
+<button onclick="showLang('en')">English</button>
+</div>
+<div id="progress-container"></div>
+<script>
+let lang = 'en';
+const data = 'progress-data.json';
+function fetchData() {
+  fetch(data).then(r => r.json()).then(d => render(d));
+}
+function showLang(l) { lang = l; render(window.lastData); }
+function render(d) {
+  window.lastData = d;
+  const container = document.getElementById('progress-container');
+  container.innerHTML = '';
+
+  const overall = d.overall;
+  const overallDiv = document.createElement('div');
+  overallDiv.innerHTML = `<h2>${lang==='zh'?'总览':'Overall'}</h2>
+<p>${lang==='zh'?'核心合同':'Core contracts'}: ${overall.coreContracts}% | ${lang==='zh'?'Runtime baseline':'Runtime baseline'}: ${overall.runtimeBaseline}% | ${lang==='zh'?'Server parity':'Server parity'}: ${overall.serverParity}% | ${lang==='zh'?'Public docs':'Public docs'}: ${overall.publicDocs}%</p>`;
+  container.appendChild(overallDiv);
+
+  const sectionDiv = document.createElement('div');
+  sectionDiv.innerHTML = `<h3>${lang==='zh'?'核心模块':'Core Modules'}</h3>`;
+  let tbl = '<table><tr><th>Folder</th><th>Progress</th><th>Status</th><th>Description</th></tr>';
+  d.core.forEach(c => {
+    tbl += `<tr><td>${c.folder}</td><td>${c.progress}%</td><td>${c.status}</td><td>${lang==='zh'?c.zh:c.en}</td></tr>`;
+  });
+  tbl += '</table>';
+  sectionDiv.innerHTML += tbl;
+  container.appendChild(sectionDiv);
+
+  const milestoneDiv = document.createElement('div');
+  milestoneDiv.innerHTML = `<h3>${lang==='zh'?'里程碑':'Runtime Milestones'}</h3>`;
+  let mtbl = '<table><tr><th>Milestone</th><th>Status</th><th>Description</th></tr>';
+  d.milestones.forEach(m => {
+    mtbl += `<tr><td>${m.name}</td><td>${m.state}</td><td>${lang==='zh'?m.zh:m.en}</td></tr>`;
+  });
+  mtbl += '</table>';
+  milestoneDiv.innerHTML += mtbl;
+  container.appendChild(milestoneDiv);
+
+  const serverDiv = document.createElement('div');
+  serverDiv.innerHTML = `<h3>${lang==='zh'?'服务端 / 数据 / 本地化':'Server / Data / Localization'}</h3>`;
+  let stbl = '<table><tr><th>Module</th><th>Progress</th><th>Status</th><th>Description</th></tr>';
+  d.serverData.forEach(s => {
+    stbl += `<tr><td>${s.folder}</td><td>${s.progress}%</td><td>${s.status}</td><td>${lang==='zh'?s.zh:s.en}</td></tr>`;
+  });
+  stbl += '</table>';
+  serverDiv.innerHTML += stbl;
+  container.appendChild(serverDiv);
+}
+fetchData();
+</script>
+</body>
+</html>
