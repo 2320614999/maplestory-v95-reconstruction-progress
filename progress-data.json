@@ -1,0 +1,38 @@
+{
+  "updated": "2026-06-08",
+  "overall": {
+    "coreContracts": 50,
+    "runtimeBaseline": 70,
+    "serverParity": 65,
+    "publicDocs": 45
+  },
+  "core": [
+    {"id":"workspace","folder":"workspace","progress":80,"status":"stable","zh":"私有工作区结构清晰，客户端/WZ/IDB 等资产保持 local-only。","en":"Private workspace layout is clear; client/WZ/IDB assets stay local-only."},
+    {"id":"packet","folder":"packet","progress":55,"status":"in-progress","zh":"CInPacket / COutPacket host-side value model 已覆盖基础读写语义。","en":"Host-side CInPacket / COutPacket value models cover basic read/write semantics."},
+    {"id":"ztl","folder":"ztl","progress":50,"status":"in-progress","zh":"ZXString、ZRef hidden-result pointer 等关键 ABI 边界已记录。","en":"Critical ABI boundaries such as ZXString and hidden-result ZRef pointers are recorded."},
+    {"id":"network","folder":"network","progress":30,"status":"early","zh":"已有 socket/packet seam skeleton；raw socket、encryption、buffer lifecycle 未完整建模。","en":"Socket/packet seam skeleton exists; raw socket, encryption, and buffer lifecycle are not fully modeled."},
+    {"id":"login","folder":"login","progress":45,"status":"in-progress","zh":"SelectWorldResult、AvatarLook::Decode 有 IDA/runtime 证据；完整 login packet set 未完成。","en":"SelectWorldResult and AvatarLook::Decode have IDA/runtime evidence; full login packet set is incomplete."},
+    {"id":"field","folder":"field","progress":65,"status":"active","zh":"SetField(0x008D) prefix、FILETIME tail、当前 fixture offset map 已建立。","en":"SetField(0x008D) prefix, FILETIME tail, and current fixture offset map are established."},
+    {"id":"user","folder":"user","progress":55,"status":"in-progress","zh":"local user 0x002C clean fixture 已 decode；MovePath 变体覆盖仍不足。","en":"A clean local user 0x002C movement fixture is decoded; broader MovePath variants remain pending."},
+    {"id":"action","folder":"action","progress":45,"status":"in-progress","zh":"资源路径与 String ABI 的 root-cause 边界已缩小，但完整资源系统未重构。","en":"Resource-path and string ABI root-cause boundaries are narrowed; full resource system reconstruction is not done."}
+  ],
+  "milestones": [
+    {"name":"Login smoke","state":"passing","zh":"登录链路可通过自动化 smoke。","en":"Login flow passes automation smoke."},
+    {"name":"Character select smoke","state":"passing","zh":"选人流程可进入后续 migration。","en":"Character select can proceed into migration."},
+    {"name":"Channel migration","state":"passing","zh":"SelectCharacter 后可切入 channel-side MigrateIn。","en":"After SelectCharacter, the client reaches channel-side MigrateIn."},
+    {"name":"Field entry map 10000","state":"passing","zh":"clean baseline 可见进入 tutorial map。","en":"Clean baseline reaches visible tutorial map."},
+    {"name":"Field CRC clean baseline","state":"matched","zh":"map 10000 的 live client CRC 与 Kinoko 对照值匹配。","en":"Live client CRC for map 10000 matches the Kinoko comparison value."},
+    {"name":"Portal tuto00 path","state":"matched","zh":"UserPortalScriptRequest(0x0070) 正常触发 tutoChatNPC。","en":"UserPortalScriptRequest(0x0070) correctly reaches tutoChatNPC."},
+    {"name":"Local user move 0x002C","state":"decoded","zh":"已有一条 clean 112-byte movement fixture。","en":"One clean 112-byte local movement fixture is decoded."},
+    {"name":"NPC movement 0x00F1/0x013A","state":"attributed","zh":"已确认是 NPC movement stream，不再混入 local user move。","en":"Confirmed as NPC movement stream, not local user movement."},
+    {"name":"Full CharacterData","state":"partial","zh":"当前 fixture map 较强，但完整 nested decode 未完成。","en":"Current fixture map is strong, but full nested decode is not complete."},
+    {"name":"Full MovePath variants","state":"partial","zh":"core body 与一个 clean sample 已验证；更多 attr/option/tail 变体待补。","en":"Core body and one clean sample are validated; more attr/option/tail variants are pending."}
+  ],
+  "serverData": [
+    {"id":"kinoko","folder":"kinoko","progress":65,"status":"stable-progress","zh":"作为当前主服务端对照与自动化测试台。","en":"Current main server comparison target and automation testbed."},
+    {"id":"space2d","folder":"space2d-crc","progress":70,"status":"baseline-matched","zh":"proof map 已对齐，广域 map corpus 仍待扩展。","en":"Proof maps match; broader map corpus remains pending."},
+    {"id":"portal","folder":"portallist-crc","progress":75,"status":"baseline-matched","zh":"tuto00 正常路径和 portal CRC 已在 clean run 对齐。","en":"Normal tuto00 path and portal CRC match in clean runs."},
+    {"id":"localization","folder":"localization","progress":10,"status":"planned","zh":"计划做 overlay/catalog，不分发 WZ。","en":"Planned as overlay/catalog work; WZ files are not distributed."},
+    {"id":"ecosystem","folder":"ecosystem","progress":10,"status":"planned","zh":"计划整理 v95 服务端、WZ 工具、汉化资源的可信度目录。","en":"Planned trust catalog for v95 servers, WZ tools, and localization resources."}
+  ]
+}
