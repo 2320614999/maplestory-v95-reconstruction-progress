@@ -1,14 +1,14 @@
 {
-  "updated": "2026-06-10",
+  "updated": "2026-06-11",
   "overall": {
-    "coreContracts": 68,
+    "coreContracts": 72,
     "runtimeBaseline": 75,
     "serverParity": 68,
     "publicDocs": 60
   },
   "core": [
     {"id":"workspace","folder":"workspace","progress":80,"status":"stable","zh":"私有工作区结构清晰，客户端/WZ/IDB 等资产保持 local-only。","en":"Private workspace layout is clear; client/WZ/IDB assets stay local-only."},
-    {"id":"contract-tests","folder":"contract-tests","progress":82,"status":"active","zh":"统一 contract runner 已扩展到约 30+ 个 host-side contract / analyzer gates，覆盖 packet、ZTL、ActionMan、AvatarLook、network、SetField、field runtime、MovePath、cString、data、ctrl、interface 等。","en":"The unified contract runner now covers roughly 30+ host-side contract / analyzer gates across packet, ZTL, ActionMan, AvatarLook, network, SetField, field runtime, MovePath, cString, data, ctrl, interface, and more."},
+    {"id":"contract-tests","folder":"contract-tests","progress":86,"status":"active","zh":"统一 contract runner 已扩展到 30+ host-side contract / analyzer gates，新增 sort median、UUserScore sort、CAES cipher neutral helper 等 gates。","en":"The unified contract runner now covers 30+ host-side contract / analyzer gates, including new sort median, UUserScore sort, and CAES cipher neutral helper gates."},
     {"id":"packet","folder":"packet","progress":67,"status":"in-progress","zh":"CInPacket / COutPacket host-side value model、reader/writer、differential fixtures 与 DecodeBuffer contract 已覆盖基础 packet 语义。","en":"Host-side CInPacket / COutPacket value models, reader/writer checks, differential fixtures, and DecodeBuffer contracts cover basic packet semantics."},
     {"id":"ztl","folder":"ztl","progress":68,"status":"in-progress","zh":"ZXString、ZRef hidden-result pointer、array-byte、simple wrappers、stream wrappers 等 ZTL contract 面已扩展。","en":"ZTL contract coverage now includes ZXString, hidden-result ZRef pointers, array-byte checks, simple wrappers, and stream wrappers."},
     {"id":"network","folder":"network","progress":43,"status":"early","zh":"已有 socket/packet seam skeleton、network compile contract 与 DecodeBuffer source-contract 面；raw socket、encryption、buffer lifecycle 未完整建模。","en":"Socket/packet seam skeleton, network compile contract, and DecodeBuffer source-contract coverage exist; raw socket, encryption, and buffer lifecycle are not fully modeled."},
@@ -18,7 +18,11 @@
     {"id":"npc-move","folder":"npc-move","progress":68,"status":"attributed","zh":"0x00F1 / 0x013A 已归属为 NPC movement stream，并和 local user movement 分离；reader/writer prefix/body 对齐。","en":"0x00F1 / 0x013A are attributed as the NPC movement stream, separated from local user movement, with reader/writer prefix and body alignment."},
     {"id":"action","folder":"action","progress":54,"status":"in-progress","zh":"ActionMan path contract 与 action mapping helpers 已进入 host-side contract；完整资源系统未重构。","en":"ActionMan path contracts and action mapping helpers are in the host-side contract set; the full resource system is not reconstructed."},
     {"id":"cstring","folder":"cstring","progress":45,"status":"abi-docs","zh":"Batch008 已记录 cString accessor、pointer-view、ASCII search/compare 的窄 host-side source-contract facts；不声明生产布局、allocator/lifetime、imported API parity 或 verified。","en":"Batch008 records narrow cString accessor, pointer-view, and ASCII search/compare host-side source-contract facts; no production layout, allocator/lifetime, imported API parity, or verified status is claimed."},
-    {"id":"low-risk","folder":"low-risk-contracts","progress":55,"status":"expanding","zh":"低风险 host-side source contracts 已扩展到 field constants、temporary stat、party quest、minigame、encoding、NM、core、CTRL、interface、data 等方向。","en":"Low-risk host-side source contracts now cover field constants, temporary stat, party quest, minigame, encoding, NM, core, CTRL, interface, data, and related lanes."}
+    {"id":"sort","folder":"sort","progress":40,"status":"abi-docs","zh":"Tier2 shard2 Median neutral 的 6 个 EA table facts 已进入 ABI doc / promotion record；不声明 production sort correctness。","en":"Six Tier2 shard2 Median neutral EA table facts are documented in ABI docs / promotion records; production sort correctness is not claimed."},
+    {"id":"low-risk","folder":"low-risk-contracts","progress":58,"status":"expanding","zh":"低风险 host-side source contracts 已扩展到 field constants、temporary stat、party quest、minigame、encoding、NM、core、CTRL、interface、data、sort、crypto 等方向。","en":"Low-risk host-side source contracts now cover field constants, temporary stat, party quest, minigame, encoding, NM, core, CTRL, interface, data, sort, crypto, and related lanes."},
+    {"id":"tier2","folder":"tier2-handoff","progress":45,"status":"pending-trusted-handoff","zh":"Claude Tier2 外部报告完成 475 对 .cpp/.h；主仓可信 handoff 覆盖 461 对，仍缺 shard3，不能算 source intake。","en":"Claude Tier2 is externally reported complete with 475 .cpp/.h pairs; trusted main-repo handoff covers 461 pairs and still lacks shard3, so this is not source intake."},
+    {"id":"tier2ext-intake","folder":"tier2ext-intake","progress":25,"status":"metadata-only","zh":"Tier2Ext 18 个 handoff roots 已登记，5193 manifest rows、1082 .cpp、1082 .h；全部 metadata-only。","en":"Tier2Ext has 18 registered handoff roots, 5193 manifest rows, 1082 .cpp files, and 1082 .h files; all remain metadata-only."},
+    {"id":"tier2ext-quarantine","folder":"tier2ext-quarantine","progress":30,"status":"ready-with-limits","zh":"Tier2Ext quarantine/Zs plan 覆盖 2218 files：14 hard quarantine、827 cleanup、1323 Zs candidates、54 metadata-only。","en":"Tier2Ext quarantine/Zs plan covers 2218 files: 14 hard quarantine, 827 cleanup required, 1323 Zs candidates, and 54 metadata-only."}
   ],
   "milestones": [
     {"name":"Login smoke","state":"passing","zh":"登录链路可通过自动化 smoke。","en":"Login flow passes automation smoke."},
@@ -28,8 +32,12 @@
     {"name":"Field CRC clean baseline","state":"matched","zh":"map 10000 的 live client CRC 与 Kinoko 对照值匹配。","en":"Live client CRC for map 10000 matches the Kinoko comparison value."},
     {"name":"Portal tuto00 path","state":"matched","zh":"UserPortalScriptRequest(0x0070) 正常触发 tutoChatNPC。","en":"UserPortalScriptRequest(0x0070) correctly reaches tutoChatNPC."},
     {"name":"SetField boundary","state":"mapped","zh":"SetField prefix、seed、FILETIME tail 和当前 CharacterData section map 已建立。","en":"SetField prefix, seeds, FILETIME tail, and the current CharacterData section map are established."},
-    {"name":"Host contract suite","state":"expanded","zh":"统一 contract runner 覆盖约 30+ 个 contract / analyzer gates。","en":"The unified contract runner covers roughly 30+ contract / analyzer gates."},
-    {"name":"Formal promotions","state":"147","zh":"当前 formal promotions 为 147；verified 仍为 0。","en":"Current formal promotions are 147; verified remains 0."},
+    {"name":"Host contract suite","state":"expanded","zh":"统一 contract runner 覆盖 30+ contract / analyzer gates。","en":"The unified contract runner covers 30+ contract / analyzer gates."},
+    {"name":"Formal promotions","state":"153","zh":"当前 formal promotions 为 153；verified 仍为 0。","en":"Current formal promotions are 153; verified remains 0."},
+    {"name":"Tier2 translation","state":"external-complete / pending handoff","zh":"外部 Tier2 报告完成 475 对 .cpp/.h；主仓可信 handoff 仍缺 shard3。","en":"External Tier2 is reported complete with 475 .cpp/.h pairs; trusted main-repo handoff still lacks shard3."},
+    {"name":"Tier2Ext intake","state":"metadata-only registered","zh":"18 个 handoff roots、5193 rows、1082 cpp/h 已登记；没有 source intake。","en":"18 handoff roots, 5193 rows, and 1082 cpp/h pairs are registered; no source intake is claimed."},
+    {"name":"Tier2Ext quarantine plan","state":"ready-with-limits","zh":"quarantine/Zs plan 已通过 review，后续先 cleanup / scoped Zs，再 IDA MCP。","en":"The quarantine/Zs plan passed review; cleanup / scoped Zs comes before IDA MCP sampling."},
+    {"name":"Shard18 /Zs audit","state":"needs harness repair","zh":"Shard18 header-only /Zs 通过，但 direct source /Zs 失败，需要 generated-only harness repair。","en":"Shard18 header-only /Zs passes, but direct source /Zs fails and needs generated-only harness repair."},
     {"name":"Local user move 0x002C","state":"decoded","zh":"已有一条 clean 112-byte movement fixture，可由 contract split decode/re-encode。","en":"One clean 112-byte local movement fixture is split-decoded and re-encoded by contracts."},
     {"name":"NPC movement 0x00F1/0x013A","state":"attributed","zh":"已确认是 NPC movement stream，不再混入 local user move。","en":"Confirmed as NPC movement stream, not local user movement."},
     {"name":"Full CharacterData","state":"partial","zh":"当前 fixture map 较强，但完整 nested decode 未完成。","en":"Current fixture map is strong, but full nested decode is not complete."},
