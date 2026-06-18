@@ -56,13 +56,4 @@
     {"name":"Local user move 0x002C","state":"decoded","zh":"已有一条 clean 112-byte movement fixture，可由 contract split decode/re-encode。","en":"One clean 112-byte local movement fixture is split-decoded and re-encoded by contracts."},
     {"name":"NPC movement stream","state":"attributed","zh":"已确认是 NPC movement stream，不再混入 local user move。","en":"Confirmed as NPC movement stream, not local user movement."},
     {"name":"Full CharacterData","state":"partial","zh":"当前 fixture map 较强，但完整 nested decode 未完成。","en":"Current fixture map is strong, but full nested decode is not complete."},
-    {"name":"Full MovePath variants","state":"partial","zh":"core body 与一个 clean sample 已验证；更多 attr/option/tail 变体待补。","en":"Core body and one clean sample are validated; more attr/option/tail variants are pending."}
-  ],
-  "serverData": [
-    {"id":"kinoko","folder":"kinoko","progress":68,"status":"stable-progress","zh":"作为当前主服务端对照与自动化测试台，clean CRC/portal baseline 稳定。","en":"Current main server comparison target and automation testbed, with stable clean CRC/portal baseline."},
-    {"id":"space2d","folder":"space2d-crc","progress":72,"status":"baseline-matched","zh":"proof map 已对齐，广域 map corpus 与 linked-map 仍待扩展。","en":"Proof maps match; broader map corpus and linked-map coverage remain pending."},
-    {"id":"portal","folder":"portallist-crc","progress":78,"status":"baseline-matched","zh":"tuto00 正常路径和 portal CRC 已在 clean run 对齐，旧 NUL 现象降级为 stale。","en":"Normal tuto00 path and portal CRC match in clean runs; older NUL observations are treated as stale."},
-    {"id":"localization","folder":"localization","progress":10,"status":"planned","zh":"计划做 overlay/catalog，不分发 WZ。","en":"Planned as overlay/catalog work; WZ files are not distributed."},
-    {"id":"ecosystem","folder":"ecosystem","progress":10,"status":"planned","zh":"计划整理 v95 服务端、WZ 工具、汉化资源的可信度目录。","en":"Planned trust catalog for v95 servers, WZ tools, and localization resources."}
-  ]
-}
+    {"name":"Full MovePath variants","state":"partial","zh":"core body 与一个 clean sample 已验证；更多 attr/option/tail 变体待补。","en":"Core body and one clean sample are validated; more
